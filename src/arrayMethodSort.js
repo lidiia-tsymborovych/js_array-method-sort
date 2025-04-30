@@ -11,27 +11,26 @@ function applyCustomSort() {
       let counter = 0;
 
       for (let i = 1; i < this.length; i++) {
-        const a = this[i - 1];
-        const b = this[i];
+        const temp = this[i];
 
         if (!compareFunction) {
-          const defaultDiffer = String(a) <= String(b);
+          const defaultResult = String(this[i - 1]) <= String(temp);
 
-          if (defaultDiffer) {
+          if (defaultResult) {
             continue;
           } else {
-            this[i] = a;
-            this[i - 1] = b;
+            this[i] = this[i - 1];
+            this[i - 1] = temp;
             counter++;
           }
         } else {
-          const result = compareFunction(a, b);
+          const result = compareFunction(this[i - 1], temp);
 
           if (result <= 0) {
             continue;
           } else {
-            this[i] = a;
-            this[i - 1] = b;
+            this[i] = this[i - 1];
+            this[i - 1] = temp;
             counter++;
           }
         }
